@@ -3,6 +3,7 @@ package org.grails.plugin.cachedresources
 import org.codehaus.groovy.grails.plugins.codecs.SHA256BytesCodec
 import org.grails.plugin.cachedresources.util.Base62
 import org.grails.plugin.resource.mapper.MapperPhase
+import org.codehaus.groovy.grails.plugins.codecs.SHA256Codec
 
 class HashAndCacheResourceMapper {
 
@@ -83,7 +84,7 @@ class HashAndCacheResourceMapper {
         }
 
         // Rename or copy here?
-        input.renameTo(target)
+        new AntBuilder().copy ( file :input.absolutePath, tofile : target.absolutePath )
         target
     }
     
